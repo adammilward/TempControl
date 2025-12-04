@@ -12,6 +12,18 @@
 #define ONE_WIRE_PIN 8
 #endif
 
+//digital pins for fans
+#ifndef FAN_PIN_A
+#define FAN_PIN_A 2
+#endif
+#ifndef FAN_PIN_B
+#define FAN_PIN_B 4
+#endif
+#ifndef FAN_PIN_C
+#define FAN_PIN_C 7
+#endif
+
+// PWM pins for fans
 #ifndef PWM_PIN_A
 #define PWM_PIN_A 3
 #endif

@@ -121,7 +121,7 @@ void loop() {
 
     if (isnan(sensorMax)) {
       Serial.println("Error: no valid temperature readings");
-      power.setPowerPercent(0.0f);
+      power.activateFans(10.0f);
       return;
     }
 
@@ -130,20 +130,9 @@ void loop() {
     Serial.print("  Target: ");
     Serial.print(maxTargetTemp, 1);
 
-    float over = sensorMax - maxTargetTemp;
-    float onPercent = 0.0f;
-    if (over > 0.0f) {
-      // 0.1 degrees over -> 10%: that implies mapping 0.1 deg -> 10%; 1.0 deg -> 100%
-      // So onPercent = min( (over / 1.0) * 100, 100) but we want 0.1->10 -> so scaling is *100/1.0
-      // That equals over * 100. But then 0.1*100 = 10, 1.0*100 = 100. Good.
-      onPercent = over * 100.0f;
-      if (onPercent > 100.0f) onPercent = 100.0f;
-    }
-
-    Serial.print("  Over: "); Serial.print(over, 3);
-    Serial.print("  Power %: "); Serial.print(onPercent, 1);
-
-    power.setPowerPercent(onPercent);
+    float overTemp = sensorMax - maxTargetTemp;
+    power.activateFans(overTemp);
     Serial.println();
   }
 }
+
