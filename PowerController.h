@@ -10,18 +10,9 @@ public:
 
   // set fan power with given over-temperature
   void activateFans(float overTemp);
-
-
-
 private:
-
-  // Set power percent 0.0 - 100.0 (will be constrained)
-  void setFanPinOuts(float percent);
-
-  // Set PWM individually
-  void setPwmForAll(uint8_t pwmValue);
-
-  void setFanPins(uint8_t value);
+  // Set PWM as percent 0..100 (will be constrained and converted to 0..255)
+  void setPwm(uint8_t percent);
 };
 
 #endif

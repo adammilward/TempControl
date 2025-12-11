@@ -13,18 +13,14 @@
 #endif
 
 //digital pins for fans
-#ifndef FAN_PIN_A
-#define FAN_PIN_A 2
+#ifndef EXTRACTOR_FAN
+#define EXTRACTOR_FAN 2
 #endif
-#ifndef FAN_PIN_B
-#define FAN_PIN_B 4
+#ifndef SUPPLY_FAN
+#define SUPPLY_FAN 4
 #endif
 #ifndef FAN_PIN_C
 #define FAN_PIN_C 7
-#endif
-
-#ifndef FAN_PIN_D
-#define FAN_PIN_D 12
 #endif
 
 // PWM pins for fans
@@ -55,7 +51,7 @@
 
 // Default target temperature
 #ifndef DEFAULT_MAX_TARGET_TEMP
-#define DEFAULT_MAX_TARGET_TEMP 26.0f
+#define DEFAULT_MAX_TARGET_TEMP 25.0f
 #endif
 
 // EEPROM address to store the max target temperature (choose a safe offset)
