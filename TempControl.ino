@@ -113,7 +113,10 @@ void loop() {
   if (now - lastReadMillis >= READ_INTERVAL) {
     lastReadMillis = now;
 
-    Serial.print("Temps: ");
+    Serial.print("  Target: ");
+    Serial.print(maxTargetTemp, 1);
+
+    Serial.print("  Temps: ");
     digitalWrite(STATUS_LED_PIN, HIGH);
     temps.requestTemperatures();
     float sensorMax = temps.getMaxTemperature();
@@ -127,8 +130,6 @@ void loop() {
 
     Serial.print("  Max: ");
     Serial.print(sensorMax, 2);
-    Serial.print("  Target: ");
-    Serial.print(maxTargetTemp, 1);
 
     float overTemp = sensorMax - maxTargetTemp;
     power.activateFans(overTemp);

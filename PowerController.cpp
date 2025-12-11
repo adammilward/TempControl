@@ -29,22 +29,19 @@ void PowerController::activateFans(float overTemp)
   }
   onPercent = constrain(onPercent, 0.0f, 100.0f);
 
-  Serial.print("  Over: ");
+  Serial.print(" Over: ");
   Serial.print(overTemp, 3);
-  Serial.print("  Power: ");
-  Serial.print(onPercent, 1);
-  Serial.print("%");
-  Serial.print("  Fans:");
+  Serial.print(" || Fans:");
 
   if (overTemp <0.0f) {
     digitalWrite(EXTRACTOR_FAN, 0);
     digitalWrite(SUPPLY_FAN, 0);
-    Serial.print(" Ext: OFF  Spl: OFF ");
+    Serial.print(" Ext: off  Spl: off ");
     setPwm(0);
   } else if (overTemp <= 0.5f) {
     digitalWrite(EXTRACTOR_FAN, 1);
     digitalWrite(SUPPLY_FAN, 0);
-    Serial.print(" Ext:  ON  Spl: OFF ");
+    Serial.print(" Ext:  ON  Spl: off ");
     setPwm(0);
   } else if (overTemp < 1.0f) {
     digitalWrite(EXTRACTOR_FAN, 1);
@@ -68,5 +65,6 @@ void PowerController::setPwm(uint8_t percent) {
   uint8_t pwm = (uint8_t)round((p / 100.0f) * 255.0f);
 
   Serial.print(" PWM "); Serial.print(pwm);
+  Serial.print("   Power: "); Serial.print(percent, 1); Serial.print("%");
   analogWrite(PWM_PIN_A, pwm);
 }
