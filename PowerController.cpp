@@ -26,34 +26,35 @@ void PowerController::activateFans(float overTemp)
   {
     // 0.1 degrees over -> 20%: that implies mapping 0.1 deg -> 20%; 0.5 deg -> 100%
     onPercent = (overTemp - 1.0f) * 200.0f;
-  } else {
-    onPercent = 0.0f;
   }
+  onPercent = constrain(onPercent, 0.0f, 100.0f);
 
   Serial.print("  Over: ");
   Serial.print(overTemp, 3);
   Serial.print("  Power: ");
   Serial.print(onPercent, 1);
+  Serial.print("%");
+  Serial.print("  Fans:");
 
   if (overTemp <0.0f) {
     digitalWrite(EXTRACTOR_FAN, 0);
     digitalWrite(SUPPLY_FAN, 0);
-    Serial.print(" Ext OFF  Spl OFF ");
+    Serial.print(" Ext: OFF  Spl: OFF ");
     setPwm(0);
   } else if (overTemp <= 0.5f) {
     digitalWrite(EXTRACTOR_FAN, 1);
     digitalWrite(SUPPLY_FAN, 0);
-    Serial.print(" Ext  ON  Spl OFF ");
+    Serial.print(" Ext:  ON  Spl: OFF ");
     setPwm(0);
   } else if (overTemp < 1.0f) {
     digitalWrite(EXTRACTOR_FAN, 1);
     digitalWrite(SUPPLY_FAN, 1);
-    Serial.print(" Ext  ON  Spl  ON ");
+    Serial.print(" Ext:  ON  Spl:  ON ");
     setPwm(0);
   } else if (overTemp >= 1.0f) {
     digitalWrite(EXTRACTOR_FAN, 1);
     digitalWrite(SUPPLY_FAN, 1);
-    Serial.print(" Ext  ON  Spl  ON ");
+    Serial.print(" Ext:  ON  Spl:  ON ");
     setPwm(onPercent);
   } else {
     Serial.println("  Invalid overTemp value");
@@ -62,9 +63,10 @@ void PowerController::activateFans(float overTemp)
 
 
 void PowerController::setPwm(uint8_t percent) {
+  if (isnan(percent)) percent = 0.0f;
   float p = constrain(percent, 0.0f, 100.0f);
   uint8_t pwm = (uint8_t)round((p / 100.0f) * 255.0f);
 
-  Serial.print("  PWM set "); Serial.print(pwm);
+  Serial.print(" PWM "); Serial.print(pwm);
   analogWrite(PWM_PIN_A, pwm);
 }
