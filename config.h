@@ -23,6 +23,10 @@
 #define FAN_PIN_C 7
 #endif
 
+#ifndef FAN_PIN_D
+#define FAN_PIN_D 12
+#endif
+
 // PWM pins for fans
 #ifndef PWM_PIN_A
 #define PWM_PIN_A 3

@@ -10,6 +10,7 @@ void PowerController::begin() {
   pinMode(FAN_PIN_A, OUTPUT);
   pinMode(FAN_PIN_B, OUTPUT);
   pinMode(FAN_PIN_C, OUTPUT);
+  pinMode(FAN_PIN_D, OUTPUT);
   // start off
   analogWrite(PWM_PIN_A, 0);
   analogWrite(PWM_PIN_B, 0);
@@ -17,6 +18,7 @@ void PowerController::begin() {
   digitalWrite(FAN_PIN_A, HIGH); // on
   digitalWrite(FAN_PIN_B, HIGH); // on
   digitalWrite(FAN_PIN_C, HIGH); // on
+  digitalWrite(FAN_PIN_D, HIGH); // on
 }
 
 void PowerController::activateFans(float overTemp)
@@ -60,7 +62,9 @@ void PowerController::setFanPins(uint8_t value) {
   digitalWrite(FAN_PIN_A, value);
   digitalWrite(FAN_PIN_B, value);
   digitalWrite(FAN_PIN_C, value);
+  digitalWrite(FAN_PIN_D, value);
 }
+
 
 void PowerController::setPwmForAll(uint8_t pwmValue) {
   Serial.print("  PWM set "); Serial.print(pwmValue);
