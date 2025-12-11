@@ -22,10 +22,12 @@ void PowerController::begin() {
 void PowerController::activateFans(float overTemp)
 {
   float onPercent = 0.0f;
-  if (overTemp > 0.0f)
+  if (overTemp >= 1.0f)
   {
     // 0.1 degrees over -> 20%: that implies mapping 0.1 deg -> 20%; 0.5 deg -> 100%
     onPercent = (overTemp - 1.0f) * 200.0f;
+  } else {
+    onPercent = 0.0f;
   }
 
   Serial.print("  Over: ");
