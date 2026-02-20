@@ -19,16 +19,16 @@
 #ifndef SUPPLY_FAN
 #define SUPPLY_FAN 4
 #endif
-#ifndef FAN_PIN_C
-#define FAN_PIN_C 7
+#ifndef LIGHT_PIN_C
+#define LIGHT_PIN_C 7
 #endif
 
 // PWM pins for fans
-#ifndef PWM_PIN_A
-#define PWM_PIN_A 3
+#ifndef EXTRACTOR_PWM_PIN
+#define EXTRACTOR_PWM_PIN 3
 #endif
-#ifndef PWM_PIN_B
-#define PWM_PIN_B 5
+#ifndef BUZZER_PWM_PIN
+#define BUZZER_PWM_PIN 5
 #endif
 #ifndef PWM_PIN_C
 #define PWM_PIN_C 6
