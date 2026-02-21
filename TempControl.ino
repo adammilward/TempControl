@@ -123,7 +123,7 @@ void loop() {
     digitalWrite(STATUS_LED_PIN, LOW);
 
     if (isnan(sensorMax)) {
-      Serial.println("Error: no valid temperature readings");
+      Serial.println(" Error: no valid temperature readings ");
       power.activateFans(10.0f);
       return;
     }

@@ -30,7 +30,7 @@ void PowerController::activateFans(float overTemp)
   digitalWrite(EXTRACTOR_FAN, 0); // extractor off
   digitalWrite(SUPPLY_FAN, 0);    // supply off
   setPwm(0);                      // PWM power low
-  tone(BUZZER_PWM_PIN, 0);        // buzzer off
+  noTone(BUZZER_PWM_PIN);        // buzzer off
 
   if (overTemp < 0.0f) {
     digitalWrite(LIGHT_PIN_C, 1);
@@ -64,13 +64,13 @@ void PowerController::activateFans(float overTemp)
     setPwm(100);
     tone(BUZZER_PWM_PIN, 300);
     Serial.print(" Ext:  ON  Spl:  ON ");
-    Serial.println(" OVER TEMP  Light OFF");
+    Serial.print(" OVER TEMP  Light OFF");
     
   } else {
     digitalWrite(LIGHT_PIN_C, 0); // off
     tone(BUZZER_PWM_PIN, 1000);
-    Serial.println(" Invalid overTemp value");
-    Serial.println(" Light OFF ");
+    Serial.print(" Invalid overTemp value ");
+    Serial.print(" Light OFF ");
   }
 }
 
